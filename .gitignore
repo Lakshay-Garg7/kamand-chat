@@ -1,0 +1,7 @@
+node_modules/
+.env
+chat.db
+chat.db-*
+playwright-report/
+test-results/
+playwright/.cache/

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kamand Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen 1: log in / sign up -->
+  <main id="auth-screen" class="auth">
+    <div class="auth-card">
+      <svg class="peaks" viewBox="0 0 120 40" aria-hidden="true">
+        <path d="M0 40 L35 6 L52 24 L72 2 L120 40 Z" />
+      </svg>
+      <h1>Kamand Chat</h1>
+      <p class="tagline">Message anyone on campus, instantly.</p>
+
+      <form id="auth-form" autocomplete="on">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" required minlength="3" maxlength="20">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="6">
+        <p id="auth-error" class="error" role="alert"></p>
+        <button type="submit" id="auth-submit">Log in</button>
+      </form>
+      <button type="button" id="auth-toggle" class="link">New here? Create an account</button>
+    </div>
+  </main>
+
+  <!-- Screen 2: the chat app -->
+  <div id="app-screen" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <header class="sidebar-head">
+        <div>
+          <strong id="me-name"></strong>
+          <span class="status-text">You are online</span>
+        </div>
+        <button id="logout" class="ghost">Log out</button>
+      </header>
+      <input id="search" class="search" type="search" placeholder="Search people" aria-label="Search people">
+      <ul id="user-list" class="user-list"></ul>
+    </aside>
+
+    <section id="chat" class="chat">
+      <div id="empty-state" class="empty">
+        <p>Pick someone from the list to start chatting.</p>
+      </div>
+
+      <div id="chat-panel" class="chat-panel hidden">
+        <header class="chat-head">
+          <button id="back" class="ghost back" aria-label="Back to people">Back</button>
+          <div>
+            <strong id="peer-name"></strong>
+            <span id="peer-status" class="status-text"></span>
+          </div>
+        </header>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <form id="composer" class="composer" autocomplete="off">
+          <input id="message-input" placeholder="Write a message" maxlength="2000" aria-label="Message">
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
